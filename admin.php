@@ -4,8 +4,8 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>ConnectsU</title>
-        <link rel="icon" href="img/connectsu.jpg">
+        <title>VIT-Connect</title>
+        <link rel="icon" href="img/vitconn.png">
         <link href="mdl/material.css" rel="stylesheet">
         <link href="css/alphago.css" rel="stylesheet">
   
@@ -42,7 +42,7 @@
         
     <header class="header mdl-layout__header">
           <div class="mdl-layout__header-row">
-              <div id="title"><h3 >ConnectsU</h3></div>
+              <div id="title"><h3>VIT-Connect</h3></div>
         </div>
     </header> 
     

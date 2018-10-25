@@ -10,8 +10,8 @@ if(isset($_SESSION['alphago_em']))
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>ConnectsU</title>
-        <link rel="icon" href="img/connectsu.jpg">
+        <title>VIT-Connect</title>
+        <link rel="icon" href="img/vitconn.png">
         <link href="mdl/material.css" rel="stylesheet">
         <link href="css/jquery-ui.css" rel="stylesheet">
         <link href="css/jquery-ui.min.css.css" rel="stylesheet">
@@ -75,7 +75,8 @@ if(isset($_SESSION['alphago_em']))
         bottom: 0;
         right: 0;
         left: 0;
-        background: url('img/back.jpg') center/cover;
+        background: url('img/back.png') center/cover;
+        opacity: 0.4;
     }
     </style>
     <script>
@@ -88,7 +89,7 @@ if(isset($_SESSION['alphago_em']))
         <div id="back"></div>
     <header class="header mdl-layout__header">
           <div class="mdl-layout__header-row">
-              <div id="title"><h3 >ConnectsU</h3></div>
+              <div id="title"><h3 >VIT-Connect</h3></div>
         </div>
     </header> 
     <div class="cards mdl-card mdl-shadow--4dp" id="signin">
@@ -96,7 +97,7 @@ if(isset($_SESSION['alphago_em']))
     <div>
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
             <input class="mdl-textfield__input" type="email" id="lemail">
-            <label class="mdl-textfield__label" for="sample3">moodle_id@students.iitmandi.ac.in</label>
+            <label class="mdl-textfield__label" for="sample3">vit_id@vitstudents.ac.in</label>
         </div>
         <br/>
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -112,10 +113,8 @@ if(isset($_SESSION['alphago_em']))
         <hr>
         <br><br>
         <p>
-            ConnectsU is a social networking site for IIT Mandi.<br>
-            Special thanks to <b>Dr. Arti Kashyap</b> and <b>Chandan Purbia</b><br>
-            <b>Developed by</b> : Indresh Kumar | Swapnil Sharma | Pranav Gupta<br>
-            <b>Image Credits</b> : Chandan Purbia<br>
+            VIT-Connect is a social networking site for the students and teachers of VIT Vellore.<br>
+            <b>Developed by</b> : Saurabh Bhole | Varshneya Rajagopal | Sarvesh Samvedi | Reetvik<br>
         </p>        
     </div>
      
@@ -133,7 +132,7 @@ if(isset($_SESSION['alphago_em']))
         <br/>
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
             <input class="mdl-textfield__input" type="email" id="email">
-            <label class="mdl-textfield__label" for="sample3">moodle_id@students.iitmandi.ac.in</label>
+            <label class="mdl-textfield__label" for="sample3">vit_id@vitstudent.ac.in</label>
         </div>
         <br/>
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -153,7 +152,7 @@ if(isset($_SESSION['alphago_em']))
         <br/>
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
             <input class="mdl-textfield__input" type="text" id="dob">
-            <label class="mdl-textfield__label" for="sample3"></label>
+            <label class="mdl-textfield__label" for="sample3">Date of Birth:</label>
         </div>
         <br/><br/>
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect" onclick="register()">Sign Up</button>

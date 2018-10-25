@@ -50,8 +50,8 @@ while ($f = mysqli_fetch_array($q)) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>ConnectsU</title>
-    <link rel="icon" href="img/connectsu.jpg">
+    <title>VIT-Connect</title>
+    <link rel="icon" href="img/vitconn.png">
 
     <!-- Bootstrap -->
     <link href="mdl/material.css" rel="stylesheet">
@@ -122,7 +122,7 @@ while ($f = mysqli_fetch_array($q)) {
             ?>
         <header class="header mdl-layout__header">
           <div class="mdl-layout__header-row">
-              <div id="title"><h3 >ConnectsU</h3></div>
+              <div id="title"><h3 >VIT-Connect</h3></div>
               <div id = "headbtn">
                   <a href="main.php" style="text-decoration:none">
                   <button id="home" class="head_button mdl-button mdl-js-button">
@@ -246,18 +246,18 @@ while ($f = mysqli_fetch_array($q)) {
             $check = mysqli_query($c, "SELECT * FROM $t WHERE user = ".$id. " AND status = 'friend'");
             if(mysqli_num_rows($check) != 0 || $u == $id) {
                 echo "<b style='font-size:20px'>$fn</b><hr/>"
-                        . "<button id='show-dialog' class='mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent'>See all mates</button>"
+                        . "<button id='show-dialog' class='mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent'>See all friends</button>"
                         . "<br/><br/>$gd</br>$dob";
             }
             else {
-                echo "You need to need in his/her mates list.<br/>Send request to see profile.";
+                echo "You need to be in his/her friends list.<br/>Send request to see profile.";
             }
             ?>
             
             <dialog style="width: 60%; max-height: 600px; border-radius: 2px; overflow-y: auto; background-color:rgba(255, 255, 255, 0.98)" id='mates' class="mdl-dialog">
                 <div class="mdl-dialog__content">
 
-                            <p style="font-size: 35px; text-align: center;">Mates<hr/></p>
+                            <p style="font-size: 35px; text-align: center;">Friends<hr/></p>
                             <div>
                             <?php
                             $t = $u."_mates";
@@ -339,7 +339,7 @@ while ($f = mysqli_fetch_array($q)) {
                     ";
             }
             else {
-                echo "You need to need in his/her mates list.<br/>Send request to see profile.";
+                echo "You need to be in his/her friends list.<br/>Send request to see profile.";
             }
             ?>
                 
@@ -541,7 +541,7 @@ while ($f = mysqli_fetch_array($q)) {
                 ?>
             </div>
             <div id="suggestedfriends" class="block mdl-card mdl-shadow--4dp">
-            <span style="font-size: 25px">Suggested Mates</span><hr>
+            <span style="font-size: 25px">Suggested Friends</span><hr>
             <?php
                 $q1 = 'SELECT '.$id.'_mates.user AS fid, COUNT('.$id.'_posts.id) AS nposts FROM '.$id.'_mates LEFT JOIN '.$id.'_posts ON '.$id.'_mates.user = '.$id.'_posts.user WHERE '.$id.'_mates.status LIKE "friend" GROUP BY '.$id.'_mates.user ORDER BY nposts DESC LIMIT 3;';
                 $r1 = mysqli_query($c, $q1);

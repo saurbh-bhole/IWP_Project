@@ -32,8 +32,8 @@ $menu = 0;
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>ConnectsU</title>
-    <link rel="icon" href="img/connectsu.jpg">
+    <title>VIT-Connect</title>
+    <link rel="icon" href="img/vitconn.png">
 
     <!-- Bootstrap -->
     <link href="mdl/material.css" rel="stylesheet">
@@ -160,7 +160,7 @@ $menu = 0;
             ?>
         <header class="header mdl-layout__header">
           <div class="mdl-layout__header-row">
-              <div id="title"><h3 >ConnectsU</h3></div>
+              <div id="title"><h3 >VIT-Connect</h3></div>
               <div id = "headbtn">
                   <a href="main.php" style="text-decoration:none">
                   <button id="home" class="head_button mdl-button mdl-js-button">

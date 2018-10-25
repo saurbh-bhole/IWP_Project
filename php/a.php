@@ -12,7 +12,7 @@
             if($fn != "" && $em != "" && $pw != "" && $gd != "" && $dob != "") {
                 $re1='((?:[a-z][a-z0-9_]*))';	# Variable Name 1
                 $re2='(@)';	# Any Single Character 1
-                $re3='(students\\.iitmandi\\.ac\\.in)';	# Fully Qualified Domain Name 1
+                $re3='(vitstudent\\.ac\\.in)';	# Fully Qualified Domain Name 1
                 if(preg_match_all ("/".$re1.$re2.$re3."/is", $em, $matches)) {
                     if(preg_match('/^[A-Za-z]{1}[A-Za-z0-9]{6,25}$/', $pw)) {
                         $pw = md5($pw);
