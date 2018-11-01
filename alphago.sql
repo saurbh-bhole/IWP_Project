@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.8.3
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 11, 2016 at 04:29 AM
--- Server version: 10.1.13-MariaDB
--- PHP Version: 7.0.8
+-- Generation Time: Nov 01, 2018 at 08:20 AM
+-- Server version: 10.1.35-MariaDB
+-- PHP Version: 7.2.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -23,64 +25,11 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `1_12_votes`
---
-
-CREATE TABLE `1_12_votes` (
-  `user` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `1_12_votes`
---
-
-INSERT INTO `1_12_votes` (`user`) VALUES
-(1),
-(2);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `1_13_votes`
---
-
-CREATE TABLE `1_13_votes` (
-  `user` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `1_13_votes`
---
-
-INSERT INTO `1_13_votes` (`user`) VALUES
-(1),
-(2);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `1_14_votes`
---
-
-CREATE TABLE `1_14_votes` (
-  `user` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `1_14_votes`
---
-
-INSERT INTO `1_14_votes` (`user`) VALUES
-(2);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `1_main`
 --
 
 CREATE TABLE `1_main` (
-  `id` int(11) NOT NULL,
+  `id` int(11) DEFAULT NULL,
   `user` varchar(250) DEFAULT NULL,
   `post` text,
   `time` int(11) NOT NULL,
@@ -88,13 +37,6 @@ CREATE TABLE `1_main` (
   `privacy` varchar(250) DEFAULT NULL,
   `status` varchar(250) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `1_main`
---
-
-INSERT INTO `1_main` (`id`, `user`, `post`, `time`, `details`, `privacy`, `status`) VALUES
-(7, '2', 'Hello there!\r\nHow are you guys?', 1478786163, '10/11/16 19:56', 'public', 'active');
 
 -- --------------------------------------------------------
 
@@ -108,13 +50,6 @@ CREATE TABLE `1_mates` (
   `status` varchar(250) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `1_mates`
---
-
-INSERT INTO `1_mates` (`user`, `relation`, `status`) VALUES
-(2, 'friend', 'friend');
-
 -- --------------------------------------------------------
 
 --
@@ -126,7 +61,7 @@ CREATE TABLE `1_notify` (
   `notify` varchar(250) DEFAULT NULL,
   `time` int(11) DEFAULT NULL,
   `details` varchar(250) DEFAULT NULL,
-  `status` varchar(250) NOT NULL
+  `status` varchar(250) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -134,10 +69,8 @@ CREATE TABLE `1_notify` (
 --
 
 INSERT INTO `1_notify` (`id`, `notify`, `time`, `details`, `status`) VALUES
-(2, '<a href="profile.php?id=2">Indres</a> wants to be your mate.', 1478521301, '07/11/16 13:21', 'read'),
-(3, '<a href="profile.php?id=2">Indres</a> wants to be your mate.', 1478521945, '07/11/16 13:32', 'read'),
-(4, '<a href="profile.php?id=2">Indres</a> is now your mate.', 1478522107, '07/11/16 13:35', 'read'),
-(5, '<a href="profile.php?id=2">Indres</a> is now your mate.', 1478693235, '09/11/16 13:07', 'read');
+(1, 'You have a new notice to view. <a href=\"#\" onclick=\"viewnotice(\'0\')\">Click here</a>', 1540956948, '31/10/18 04:35', 'unread'),
+(2, 'You have a new notice to view. <a href=\"#\" onclick=\"viewnotice(\'\')\">Click here</a>', 1540962021, '31/10/18 06:00', 'unread');
 
 -- --------------------------------------------------------
 
@@ -155,60 +88,6 @@ CREATE TABLE `1_posts` (
   `status` varchar(250) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `1_posts`
---
-
-INSERT INTO `1_posts` (`id`, `user`, `post`, `time`, `details`, `privacy`, `status`) VALUES
-(12, '1', 'Kaisa h bhai!?', 1478787552, '10/11/16 20:19', 'public', 'active'),
-(13, '2', 'Bol be', 1478787697, '10/11/16 20:21', 'public', 'active'),
-(14, '1', 'rtergtberg', 1478788027, '10/11/16 20:27', 'public', 'active');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `2_6_votes`
---
-
-CREATE TABLE `2_6_votes` (
-  `user` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `2_7_votes`
---
-
-CREATE TABLE `2_7_votes` (
-  `user` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `2_7_votes`
---
-
-INSERT INTO `2_7_votes` (`user`) VALUES
-(1),
-(2);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `2_8_votes`
---
-
-CREATE TABLE `2_8_votes` (
-  `user` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `2_8_votes`
---
-
-INSERT INTO `2_8_votes` (`user`) VALUES
-(2);
-
 -- --------------------------------------------------------
 
 --
@@ -216,7 +95,7 @@ INSERT INTO `2_8_votes` (`user`) VALUES
 --
 
 CREATE TABLE `2_main` (
-  `id` int(11) NOT NULL,
+  `id` int(11) DEFAULT NULL,
   `user` varchar(250) DEFAULT NULL,
   `post` text,
   `time` int(11) NOT NULL,
@@ -224,14 +103,6 @@ CREATE TABLE `2_main` (
   `privacy` varchar(250) DEFAULT NULL,
   `status` varchar(250) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `2_main`
---
-
-INSERT INTO `2_main` (`id`, `user`, `post`, `time`, `details`, `privacy`, `status`) VALUES
-(12, '1', 'Kaisa h bhai!?', 1478787552, '10/11/16 20:19', 'public', 'active'),
-(14, '1', 'rtergtberg', 1478788027, '10/11/16 20:27', 'public', 'active');
 
 -- --------------------------------------------------------
 
@@ -245,13 +116,6 @@ CREATE TABLE `2_mates` (
   `status` varchar(250) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `2_mates`
---
-
-INSERT INTO `2_mates` (`user`, `relation`, `status`) VALUES
-(1, 'friend', 'friend');
-
 -- --------------------------------------------------------
 
 --
@@ -263,7 +127,7 @@ CREATE TABLE `2_notify` (
   `notify` varchar(250) DEFAULT NULL,
   `time` int(11) DEFAULT NULL,
   `details` varchar(250) DEFAULT NULL,
-  `status` varchar(250) NOT NULL
+  `status` varchar(250) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -271,10 +135,8 @@ CREATE TABLE `2_notify` (
 --
 
 INSERT INTO `2_notify` (`id`, `notify`, `time`, `details`, `status`) VALUES
-(2, '<a href="profile.php?id=1">Swapnil Sharma</a> is now your mate.', 1478521332, '07/11/16 13:22', 'read'),
-(3, '<a href="profile.php?id=1">Swapnil Sharma</a> wants to be your mate.', 1478522084, '07/11/16 13:34', 'read'),
-(4, '<a href="profile.php?id=1">Swapnil Sharma</a> wants to be your mate.', 1478693005, '09/11/16 13:03', 'read'),
-(5, '<a href="profile.php?id=1">Swapnil Sharma</a> posted on your profile. <a href="profile.php?id=2">View post.</a>', 1478788051, '10/11/16 20:27', 'read');
+(1, 'You have a new notice to view. <a href=\"#\" onclick=\"viewnotice(\'0\')\">Click here</a>', 1540956948, '31/10/18 04:35', 'unread'),
+(2, 'You have a new notice to view. <a href=\"#\" onclick=\"viewnotice(\'\')\">Click here</a>', 1540962021, '31/10/18 06:00', 'unread');
 
 -- --------------------------------------------------------
 
@@ -292,13 +154,70 @@ CREATE TABLE `2_posts` (
   `status` varchar(250) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `2_posts`
+-- Table structure for table `3_main`
 --
 
-INSERT INTO `2_posts` (`id`, `user`, `post`, `time`, `details`, `privacy`, `status`) VALUES
-(7, '2', 'Hello there!\r\nHow are you guys?', 1478786163, '10/11/16 19:56', 'public', 'active'),
-(8, '1', 'Kya hua?', 1478788051, '10/11/16 20:27', 'public', 'active');
+CREATE TABLE `3_main` (
+  `id` int(11) DEFAULT NULL,
+  `user` varchar(250) DEFAULT NULL,
+  `post` text,
+  `time` int(11) NOT NULL,
+  `details` varchar(250) DEFAULT NULL,
+  `privacy` varchar(250) DEFAULT NULL,
+  `status` varchar(250) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `3_mates`
+--
+
+CREATE TABLE `3_mates` (
+  `user` int(11) NOT NULL,
+  `relation` varchar(250) DEFAULT NULL,
+  `status` varchar(250) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `3_notify`
+--
+
+CREATE TABLE `3_notify` (
+  `id` int(11) NOT NULL,
+  `notify` varchar(250) DEFAULT NULL,
+  `time` int(11) DEFAULT NULL,
+  `details` varchar(250) DEFAULT NULL,
+  `status` varchar(250) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `3_notify`
+--
+
+INSERT INTO `3_notify` (`id`, `notify`, `time`, `details`, `status`) VALUES
+(1, 'You have a new notice to view. <a href=\"#\" onclick=\"viewnotice(\'\')\">Click here</a>', 1540962021, '31/10/18 06:00', 'unread');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `3_posts`
+--
+
+CREATE TABLE `3_posts` (
+  `id` int(11) NOT NULL,
+  `user` varchar(250) DEFAULT NULL,
+  `post` text,
+  `time` int(11) DEFAULT NULL,
+  `details` varchar(250) DEFAULT NULL,
+  `privacy` varchar(250) DEFAULT NULL,
+  `status` varchar(250) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -323,8 +242,10 @@ CREATE TABLE `members_details` (
 --
 
 INSERT INTO `members_details` (`id`, `gender`, `dob`, `contact`, `about`, `hobbies`, `clubs`, `courses`, `projects`) VALUES
-(1, 'Male', '22/12/1996', '8629015435', 'oregheo\r\nersgser', 'oweriuh wrotiu', 'weigtuhr o', 'woeriguwrh', '6oiuwghoeiruh'),
-(2, 'Male', '12/21/1996', 'fnfgnfgn', 'gfngdnfgn', '', '', '', '');
+(1, 'Male', '22/01/1999', '', '', '', '', '', ''),
+(2, 'Male', '10/03/2018', '', '', '', '', '', ''),
+(3, 'Male', '10/16/2018', '', '', '', '', '', ''),
+(10, '', '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -345,30 +266,33 @@ CREATE TABLE `members_list` (
 --
 
 INSERT INTO `members_list` (`id`, `fullname`, `email`, `password`, `status`) VALUES
-(1, 'Swapnil Sharma', 's_sharma@students.iitmandi.ac.in', '3fc0a7acf087f549ac2b266baf94b8b1', 'active'),
-(2, 'Indres', 'a@b.com', '3fc0a7acf087f549ac2b266baf94b8b1', 'active');
+(1, 'Saurabh Bhole', 'saurabh@vitstudent.ac.in', '3fc0a7acf087f549ac2b266baf94b8b1', 'active'),
+(2, 'Sarvesh Samvedi', 'sarvesh@vitstudent.ac.in', '787bf34e3cf70f259a1e2361391c083b', 'active'),
+(3, 'Reetvik', 'reetvik@vitstudent.ac.in', 'cd488b64f992b897f2180f41827f0294', 'active');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `noticeboard`
+--
+
+CREATE TABLE `noticeboard` (
+  `id` int(11) NOT NULL,
+  `notice` text,
+  `time` varchar(250) DEFAULT NULL,
+  `status` varchar(250) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `noticeboard`
+--
+
+INSERT INTO `noticeboard` (`id`, `notice`, `time`, `status`) VALUES
+(0, 'You have a test scheduled at 8', '1540956948', 'active');
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `1_12_votes`
---
-ALTER TABLE `1_12_votes`
-  ADD PRIMARY KEY (`user`);
-
---
--- Indexes for table `1_13_votes`
---
-ALTER TABLE `1_13_votes`
-  ADD PRIMARY KEY (`user`);
-
---
--- Indexes for table `1_14_votes`
---
-ALTER TABLE `1_14_votes`
-  ADD PRIMARY KEY (`user`);
 
 --
 -- Indexes for table `1_main`
@@ -395,24 +319,6 @@ ALTER TABLE `1_posts`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `2_6_votes`
---
-ALTER TABLE `2_6_votes`
-  ADD PRIMARY KEY (`user`);
-
---
--- Indexes for table `2_7_votes`
---
-ALTER TABLE `2_7_votes`
-  ADD PRIMARY KEY (`user`);
-
---
--- Indexes for table `2_8_votes`
---
-ALTER TABLE `2_8_votes`
-  ADD PRIMARY KEY (`user`);
-
---
 -- Indexes for table `2_main`
 --
 ALTER TABLE `2_main`
@@ -437,6 +343,30 @@ ALTER TABLE `2_posts`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `3_main`
+--
+ALTER TABLE `3_main`
+  ADD PRIMARY KEY (`time`);
+
+--
+-- Indexes for table `3_mates`
+--
+ALTER TABLE `3_mates`
+  ADD PRIMARY KEY (`user`);
+
+--
+-- Indexes for table `3_notify`
+--
+ALTER TABLE `3_notify`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `3_posts`
+--
+ALTER TABLE `3_posts`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `members_details`
 --
 ALTER TABLE `members_details`
@@ -449,6 +379,12 @@ ALTER TABLE `members_list`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `noticeboard`
+--
+ALTER TABLE `noticeboard`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -456,27 +392,45 @@ ALTER TABLE `members_list`
 -- AUTO_INCREMENT for table `1_notify`
 --
 ALTER TABLE `1_notify`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `1_posts`
 --
 ALTER TABLE `1_posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `2_notify`
 --
 ALTER TABLE `2_notify`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `2_posts`
 --
 ALTER TABLE `2_posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `3_notify`
+--
+ALTER TABLE `3_notify`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `3_posts`
+--
+ALTER TABLE `3_posts`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `members_list`
 --
 ALTER TABLE `members_list`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

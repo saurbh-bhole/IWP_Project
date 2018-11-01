@@ -3,6 +3,17 @@ include_once"php/no-cache.php";
 session_start();
 if(isset($_SESSION['alphago_em']))
     header("location: main.php");
+if(isset($_SESSION['otpdone'])){
+    if($_SESSION['otpdone'] == 'success'){
+        $message = "Registration Successful!";
+        echo "<script type='text/javascript'>alert('$message');</script>";
+    }
+    else{
+        $message = "Wrong OTP Entered";
+        echo "<script type='text/javascript'>alert('$message');</script>";
+    }
+    unset($_SESSION['otpdone']);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -134,6 +145,10 @@ if(isset($_SESSION['alphago_em']))
             <input class="mdl-textfield__input" type="email" id="email">
             <label class="mdl-textfield__label" for="sample3">vit_id@vitstudent.ac.in</label>
         </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="email" id="email2">
+            <label class="mdl-textfield__label" for="sample3">Email for OTP</label>
+        </div>
         <br/>
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
             <input class="mdl-textfield__input" type="password" id="password">
@@ -182,20 +197,17 @@ if(isset($_SESSION['alphago_em']))
             {
                 fullname: $("#fullname").val(),
                 email: $("#email").val(),
+                email2: $("#email2").val(),
                 password: $("#password").val(),
                 gender: gender,
                 dob: $("#dob").val()
             },
             function(reply){
-                if(reply == "success"){
                     $("#console").css("background-color","rgb(0,200,50)");
-                    $("#console").html("you have succesfully registered");
-                    $("#console").delay(1000).animate({width: "0px", height: "0px", opacity: "0"}, 500);
-                }
-                else{
-                    $("#console").css("background-color","rgb(230,91,94)");
                     $("#console").html(reply + "<br>");
-                }
+                    $("#console").delay(300000).animate({width: "0px", height: "0px", opacity: "0"}, 500);
+                    
+                
                 
             });
         }
@@ -214,6 +226,13 @@ if(isset($_SESSION['alphago_em']))
                     $("#console").html("you have succesfully signed in.");
                     $("#console").delay(500).animate({width: "0px", height: "0px", opacity: "0"}, 200).delay(10,function(){
                         window.location.href = "main.php";
+                    });
+                }
+                else if(reply == "admin"){
+                    $("#console").css("background-color","rgb(0,200,50)");
+                    $("#console").html("Welcome Admin.");
+                    $("#console").delay(500).animate({width: "0px", height: "0px", opacity: "0"}, 200).delay(10,function(){
+                        window.location.href = "admin.php";
                     });
                 }
                 else{

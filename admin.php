@@ -1,3 +1,12 @@
+<?php
+include_once"php/no-cache.php";
+session_start();
+if(isset($_SESSION['admin'])) {
+}
+else {
+    header("location: index.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>

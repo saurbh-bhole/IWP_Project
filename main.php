@@ -6,7 +6,7 @@ if(isset($_SESSION['alphago_em'])) {
     $fn = $_SESSION['alphago_fn'];
 }
 else {
-    header("location: /");
+    header("location: index.php");
 }
 ?>
 <!DOCTYPE html>

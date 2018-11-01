@@ -2,39 +2,36 @@
 
     $error = "none";
     if($_GET['a'] == "register") {
-        if(isset($_POST['fullname'])&&isset($_POST['email'])&&isset($_POST['password'])&&isset($_POST['gender'])&&isset($_POST['dob'])) {
+        
+        if(isset($_POST['fullname'])&&isset($_POST['email'])&&isset($_POST['email2'])&&isset($_POST['password'])&&isset($_POST['gender'])&&isset($_POST['dob'])) {
             include_once 'c.php';
             $fn = mysqli_real_escape_string($c, trim($_POST['fullname']));
             $em = mysqli_real_escape_string($c, trim($_POST['email']));
+            $em2 = mysqli_real_escape_string($c, trim($_POST['email2']));
             $pw = mysqli_real_escape_string($c, trim($_POST['password']));
             $gd = mysqli_real_escape_string($c, trim($_POST['gender']));
             $dob = mysqli_real_escape_string($c, trim($_POST['dob']));
-            if($fn != "" && $em != "" && $pw != "" && $gd != "" && $dob != "") {
+            if($fn != "" && $em != "" && $pw != "" && $gd != "" && $dob != ""&& $em2!="") {
                 $re1='((?:[a-z][a-z0-9_]*))';	# Variable Name 1
                 $re2='(@)';	# Any Single Character 1
                 $re3='(vitstudent\\.ac\\.in)';	# Fully Qualified Domain Name 1
                 if(preg_match_all ("/".$re1.$re2.$re3."/is", $em, $matches)) {
                     if(preg_match('/^[A-Za-z]{1}[A-Za-z0-9]{6,25}$/', $pw)) {
                         $pw = md5($pw);
-                        
                         $q = mysqli_query($c, "SELECT * FROM members_list WHERE email = '".$em."'");
                         if(mysqli_num_rows($q) == 0) {
-                        mysqli_query($c, "INSERT INTO members_list VALUES ('','".$fn."','".$em."','".$pw."','active')") or die(mysqli_error($c));
-                        $q = mysqli_query($c, "SELECT * FROM members_list WHERE email = '".$em."'");
-                        $f = mysqli_fetch_array($q);
-                        $id = $f['id'];
-                        mysqli_query($c, "INSERT INTO members_details VALUES ('".$id."','".$gd."','".$dob."','','','','','','')");
-                        $t = $id."_posts";
-                        mysqli_query($c, "CREATE TABLE $t (id INT PRIMARY KEY AUTO_INCREMENT,user VARCHAR(250), post TEXT(10000), time INT, details VARCHAR(250), privacy VARCHAR(250), status VARCHAR(250))");
-                        $t = $id."_main";
-                        mysqli_query($c, "CREATE TABLE $t (id INT,user VARCHAR(250), post TEXT(10000), time INT PRIMARY KEY, details VARCHAR(250), privacy VARCHAR(250), status VARCHAR(250))");
-                        $t = $id."_mates";
-                        mysqli_query($c, "CREATE TABLE $t (user INT PRIMARY KEY, relation VARCHAR(250), status VARCHAR(250))");
-                        $t = $id."_notify";
-                        mysqli_query($c, "CREATE TABLE $t (id INT PRIMARY KEY AUTO_INCREMENT, notify VARCHAR(250), time INT, details VARCHAR(250), status VARCHAR(250))");
-                        mkdir("../profiles/" . $id);
-                        copy("../img/person.jpg", "../profiles/".$id."/profile.png");
-                        $error = "success";
+                            $otp = rand(100000,999999);
+                            session_start();
+                            $_SESSION['onetimepass'] = $otp;
+                                require_once("mail_function.php");
+                                $mail_status = sendOTP($_POST["email2"],$otp);
+                                $error = "OTP Generated";
+                                $_SESSION['name']=$fn;
+                                $_SESSION['email']=$em;
+                                $_SESSION['pass']=$pw;
+                                $_SESSION['gender']=$gd;
+                                $_SESSION['dob']=$dob;
+                                header("location: otp.php");
                         }
                         else {
                             $error = "User already exists.";
@@ -62,7 +59,13 @@
             include_once 'c.php';
             $em = mysqli_real_escape_string($c, trim($_POST['email']));
             $pw = mysqli_real_escape_string($c, trim($_POST['password']));
-            if($em != "" && $pw != "") {
+            if(($em == "admin@vitstudent.ac.in") && ($pw == "admin")){
+                session_start();
+                $go = "Go";
+                $_SESSION['admin'] = $go;
+                $error = "admin";
+            }
+            elseif($em != "" && $pw != "") {
                 if(filter_var($em, FILTER_VALIDATE_EMAIL)) {
                     if(preg_match('/^[A-Za-z]{1}[A-Za-z0-9]{6,25}$/', $pw)) {
                         $pw = md5($pw);
@@ -188,6 +191,7 @@
             $time = time();
             $details = date('d/m/y H:i');
             mysqli_query($c, "INSERT INTO noticeboard VALUES('','".$notice."',".$time.",'active')");
+            unset($_SESSION['admin']);
             $q = mysqli_query($c, "SELECT * FROM noticeboard WHERE time = ".$time."");
             while($f = mysqli_fetch_array($q))
                 $nid = $f['id'];
